@@ -1,0 +1,117 @@
+alias psa='ps -u `whoami` -Hf'
+alias g='gvim'
+
+function bvtags () {
+	echo "	TAGS"
+	ctags -Rb 
+	echo "	CSCOPE"
+	cscope -Rb
+}                                      
+
+if [ ! -z "$PS1" ]; then
+	function set_prompt_command() {
+		if [ $(command p4 >/dev/null 2>&1) ]; then
+			perforce_client="- $(p4 info |grep "Client name" | cut -d' ' -f3)"
+		else
+			perforce_client=""
+		fi
+		echo -ne "\033]2;${USER}@${HOSTNAME} ${perforce_client} \007"
+	}
+	#export PROMPT_COMMAND=set_prompt_command
+
+	function set_prompt() {
+		green=$(tput setaf 1)
+		blue=$(tput setaf 4)
+		bold=$(tput bold)
+		reset=$(tput sgr0)
+		export PS1='\[$green$bold\]control-pc\[$reset\]:\[$blue$bold\]\w\[$reset\]\n$ '
+	}
+	set_prompt
+
+	# disable XON/XOFF flow control
+	stty -ixon
+
+	# hack to auto completion scripts
+	for c in ~/.ayj/bash/bash_completion.d/*; do
+		source $c
+	done
+
+	if [ -e $HOME/.bash_local ]; then
+		source $HOME/.bash_local
+	fi
+
+	unset LS_COLORS
+
+	ls --color=auto 2>/dev/null >/dev/null
+	if [ "$?" -eq 0 ]; then
+		alias ls='ls --color=auto'
+	else
+		alias ls='ls -G'
+	fi
+	# Perforce configuration
+	export P4CONFIG=.p4config
+	unset P4PORT
+	unset P4CLIENT
+	unset P4USER
+fi
+
+# per-host custom built applications per
+export PATH=~/.$(hostname)-local/bin:$PATH
+
+# Derived from Android's build/envsetup.sh 
+function cgrep()
+{
+	argv=$@
+	argc=$#
+	last_arg=${!#}
+
+	if [ "$argc" -gt 1 ] && [ -d $last_arg ]; then
+		search_directory=$last_arg
+		# Remove the last argument from the list
+		argc=$((argc - 1))
+		argv="${@:1:$argc}"
+	else 
+		search_directory="."
+	fi
+
+	find $search_directory \
+		-name .repo -prune -o \
+		-name .git -prune -o \
+		-type f \( \
+				-name '*.c' -o \
+				-name '*.cc' -o \
+				-name '*.cpp' -o \
+				-name '*.h' \
+			\) -print0 | \
+		xargs -0 grep --color -n "$argv"
+}
+
+function cld()
+{
+	cat | colordiff | LESS=X less -R -F
+}
+
+function p4changes()
+{
+	p4 changes $@ ... | LESS=X less -R -F
+}
+
+function hex2bin()
+{
+	for i in $*;
+	do
+		# strip optional 0x
+		n16=$(echo $i | sed 's/^0x//')
+		# convert a-f to upper case
+		n16=$(echo $n16 | tr '[:lower:]' '[:upper:]')
+		# convert to binary
+		n2=$(echo "ibase=16;obase=2;$n16" | bc)
+		# conver to decimal for formated printing
+		n10=$(echo "ibase=16;$n16" | bc)
+		printf "%#10x -> 0b%s\n" $n10 "$n2"
+	done
+}
+
+set -C
+
+source /trees/sw/peregrine/build/RD11.sh
