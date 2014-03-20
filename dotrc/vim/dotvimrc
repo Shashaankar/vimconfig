@@ -41,6 +41,9 @@ endif
 " Toggle menu with Control-F1
 nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
 
+" Tagbar for ctags
+nmap <F6> :TagbarToggle<CR>
+
 " Custom cursor
 highlight Cursor guifg=white guibg=steelblue
 highlight iCursor guifg=white guibg=steelblue
@@ -70,7 +73,7 @@ imap <C-e> <ESC>A
 ""set cursorline
 ""highlight CursorLine cterm=bold ctermbg=none ctermfg=none
 
-" call pathogen#infect()
+call pathogen#infect()
 
 " Autoselect, AddTabPages
 set guioptions=ae
@@ -163,21 +166,23 @@ else
 endif
 
 set background=dark
+
 " Color scheme selection
 " colorscheme solarized
-function! ToggleBackground()
-	if (g:solarized_style=="dark")
-		let g:solarized_style="light"
-		colorscheme solarized
-	else
-		let g:solarized_style="dark"
-		colorscheme solarized
-	endif
-endfunction
-command! Togbg call ToggleBackground()
-nnoremap <F5> :call ToggleBackground()<CR>
-inoremap <F5> <ESC>:call ToggleBackground()<CR>a
-vnoremap <F5> <ESC>:call ToggleBackground()<CR>
+"function! ToggleBackground()
+"	if (g:solarized_style=="dark")
+"		let g:solarized_style="light"
+"		colorscheme solarized
+"	else
+"		let g:solarized_style="dark"
+"		colorscheme solarized
+"	endif
+"endfunction
+
+" command! Togbg call ToggleBackground()
+" nnoremap <F5> :call ToggleBackground()<CR>
+" inoremap <F5> <ESC>:call ToggleBackground()<CR>a
+" vnoremap <F5> <ESC>:call ToggleBackground()<CR>
 
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
