@@ -1,3 +1,22 @@
 git clone git@github.com:ayj/dotrc.git ~/.ayj
 cd ~/.ayj
 sh install.sh
+
+
+
+Install Tagbar vim plugin
+leave a comment »
+
+The vim plugin Tagbar provides a listing of classes, functions, etc when coding in vim.
+
+Tagbar requires Vim 7.0 and Exuberant ctags 5.5. We install the later in Ubuntu 12.04 with the command
+
+sudo apt-get install exuberant-ctags
+Next, install tagbar with pathogen
+
+cd ~/.vim/bundle
+git clone git://github.com/majutsushi/tagbar
+Toggle the code browser between visible and hidden using
+
+:TagbarToggle
+
