@@ -284,3 +284,4 @@ nmap <F9> :!p4 diff -du "%"<CR>
 if &term == "xterm" 
 	set t_Co=256 
 endif
+

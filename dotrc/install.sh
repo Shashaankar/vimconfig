@@ -4,6 +4,8 @@
 # only tested on linux
 # When to use .bashrc vs .bash_profile?
 
+# install ctags and cscope before running this script
+
 PWD=`pwd`
 
 # install vim stuff
