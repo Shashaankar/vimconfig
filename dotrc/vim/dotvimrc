@@ -44,6 +44,9 @@ nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
 " Tagbar for ctags
 nmap <F6> :TagbarToggle<CR>
 
+" ctags for subdirectories
+set tags=tags;/
+
 " Custom cursor
 highlight Cursor guifg=white guibg=steelblue
 highlight iCursor guifg=white guibg=steelblue
