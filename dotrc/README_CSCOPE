@@ -2,7 +2,8 @@
 
 1) Install ctags and CSCOPE well in advance to running the install.sh script 
 2) Generate cscope.files with absolute path: 
-	find /my/project/dir -name '*.c' -o -name '*.h' > /foo/cscope.files
+	find /absolute/path/to/my/project/dir -name '*.c' -o -name '*.h' > /foo/cscope.files
+	find /home/srk/beeliner_sant/ -name '*.c' -o -name '*.h' > ./cscope.files
 3) Execute 'cscope -b -q' or 'cscope -b -q -k' (k for kernel mode which DO NOT refers to /linux/include/ libraries) in the same directory as that of cscope.file 
 	this will create files cscope.in.out, cscope.out, cscope.po.out
 4) export CSCOPE_DB=absolute/path/to/cscope.out

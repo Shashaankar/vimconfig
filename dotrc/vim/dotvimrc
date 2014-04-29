@@ -269,7 +269,7 @@ set sidescroll=1
 set cindent
 set cinoptions=:0
 
-map <F10> :NERDTreeToggle<CR>
+map <leader>t :NERDTreeToggle<CR>
 let NERDTreeMouseMode=3
 
 syn keyword cType A_UINT8 A_UINT16 A_UINT32
