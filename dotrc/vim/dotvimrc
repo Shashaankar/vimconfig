@@ -42,7 +42,7 @@ endif
 nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
 
 " Tagbar for ctags
-nmap <F6> :TagbarToggle<CR>
+nmap <C-F6> :TagbarToggle<CR>
 
 " ctags for subdirectories
 set tags=tags;/
