@@ -23,6 +23,10 @@ ufw disable
 echo "Installing network tools"
 apt-get install wireshark
 apt-get install iw
+apt-get install tftp-hpa
+apt-get install tftpd
+
+
 
 
 
@@ -36,4 +40,11 @@ apt-get install iw
 
 
 
-# configure bash aliases 
+# configure bash aliases
+
+
+# configure tftp
+mkdir /tftpboot
+chmod 777 /tftpboot
+# TODO change tftp directory path in /etc/default/tftpd-hpa 
+
