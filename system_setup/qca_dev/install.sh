@@ -25,6 +25,7 @@ apt-get install wireshark
 apt-get install iw
 apt-get install tftp-hpa
 apt-get install tftpd
+sudo apt-get install libpcap0.8-dev libsqlite3-dev
 
 
 
