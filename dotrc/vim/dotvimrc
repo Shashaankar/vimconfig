@@ -281,6 +281,12 @@ map <leader>e :!p4 edit "%"<CR>
 nmap <F8> :!p4 revert "%"<CR>
 nmap <F9> :!p4 diff -du "%"<CR>
 
+" search and replace
+nmap \r :%s/\<foo\>/bar/gc
+
+" paste it from clipboard
+nmap \p :set paste!<CR>
+
 if &term == "xterm" 
 	set t_Co=256 
 endif
