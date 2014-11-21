@@ -25,6 +25,8 @@ apt-get install wireshark
 apt-get install iw
 apt-get install tftp-hpa
 apt-get install tftpd
+sudo apt-get install libpcap0.8-dev libsqlite3-dev
+sudo apt-get install tshark
 
 
 
@@ -34,10 +36,10 @@ apt-get install tftpd
 
 
 # configure ctags
-
+apt-get install ctags
 
 # configure cscope
-
+apt-get install cscope
 
 
 # configure bash aliases
@@ -48,3 +50,6 @@ mkdir /tftpboot
 chmod 777 /tftpboot
 # TODO change tftp directory path in /etc/default/tftpd-hpa 
 
+
+
+# install/configure vnc
