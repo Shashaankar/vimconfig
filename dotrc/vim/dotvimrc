@@ -24,10 +24,10 @@ nmap < :bp<CR>
 nmap > :bn<CR>
 
 if has('cscope')
-	set cscopetag cscopeverbose
-	if has('quickfix')
-		set cscopequickfix=s-,c-,d-,i-,t-,e-
-	endif
+	"set cscopetag cscopeverbose
+	"if has('quickfix')
+	"	set cscopequickfix=s-,c-,d-,i-,t-,e-
+	"endif
         cnoreabbrev csa cs add
         cnoreabbrev csf cs find
         cnoreabbrev csk cs kill
@@ -127,6 +127,13 @@ noremap <S-Tab> <0
 
 " Shift-Tab in insert mode left shifts the current line
 imap <S-Tab> <Esc> < i	
+
+" Pressing exclamatory will result in entering escape mode
+" inoremap ! <Esc>
+" Processing leader followed by key s will result in save operation.  If the
+" buffer has not been modified since the last save, the file is not written.
+noremap <Leader>s :update<CR>
+"map <Esc><Esc> :w<CR>
 
 " Surround selected code with '#if 0' and '#endif' - this only makes sense in
 " c/c++
@@ -286,6 +293,19 @@ nmap \r :%s/\<foo\>/bar/gc
 
 " paste it from clipboard
 nmap \p :set paste!<CR>
+
+" remove trailing white spaces at end of each line
+nmap \w :%s/\s\+$//
+
+" Browsing a text file and saving all those 
+" difficult words you want to refer to during leisure.
+"Open the text file and in a split window open an empty file.
+" yank the word under cursor, change window, paste and return
+map <F7> "zyiw<C-w>wo<Esc>"zp<C-w>w
+nmap <ALT>-D bvey
+
+" user defined settings
+source ~/.vim/customrc/vimrc_aliases
 
 if &term == "xterm" 
 	set t_Co=256 
